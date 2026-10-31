@@ -1,0 +1,27 @@
+.nav ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-bottom: 12px;
+}
+
+.nav button {
+  border: 0;
+  background: transparent;
+  color: #d21288;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nav button:hover {
+  background: rgba(176, 67, 134, 0.2);
+}
+
+.nav button.active {
+  background: #fff;
+  color: #d21288;
+}

@@ -1,0 +1,11 @@
+.hd {
+  background:#000;
+  border-bottom: 1px solid #333;
+  color: #d5198a;
+  padding: 16px 16px 0;
+  text-align: center;
+}
+
+.hd h1 {
+  margin: 0 0 12px;
+}
