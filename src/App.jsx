@@ -4,6 +4,7 @@ import NewsList from './components/NewsList.jsx'
 import Footer from './components/Footer.jsx'
 
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY
+const IS_DEV = import.meta.env.DEV
 
 const CATEGORIES = [
   { id: 'general', label: 'Latest News' },
@@ -17,11 +18,12 @@ const CATEGORIES = [
 ]
 
 function getUrl(category) {
-  const base = 'https://newsapi.org/v2'
-  if (category.query) {
-    return `${base}/everything?q=${category.query}&language=en&sortBy=publishedAt&pageSize=20&apiKey=${API_KEY}`
-  }
-  return `${base}/top-headlines?category=${category.id}&pageSize=20&apiKey=${API_KEY}`
+  const path = category.query ? 'everything' : 'top-headlines'
+  const params = category.query
+    ? `q=${category.query}&language=en&sortBy=publishedAt&pageSize=20`
+    : `category=${category.id}&pageSize=20`
+  if (IS_DEV) return `https://newsapi.org/v2/${path}?${params}&apiKey=${API_KEY}`
+  return `/api/news?path=${path}&${params}`
 }
 
 function App() {
@@ -78,7 +80,7 @@ function App() {
         selected={selected}
         isLoading={isLoading}
         error={error}
-        hasKey={Boolean(API_KEY)}
+       hasKey={!IS_DEV || Boolean(API_KEY)}
       />
       <Footer />
     </>
